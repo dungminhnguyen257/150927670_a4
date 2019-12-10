@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Set the viewport width to device width for mobile -->
+  <meta name="viewport" content="width=device-width" />
+
+  <title>FakeStagram</title>
+
+  <!-- Included CSS Files -->
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/main.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Verdana", Geneva, sans-serif;
+    }
+
+    #overlay {
+      position: fixed;
+      display: none;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    #text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 50px;
+      color: white;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+    }
+
+    .lview {
+      display: inline-block;
+    }
+
+    @media only screen and (max-width: 500px) {
+      .lview {
+        display: none;
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial;
+    }
+
+    .header {
+      text-align: left;
+      padding: 32px;
+      margin: auto;
+    }
+
+    .header h1 {
+      position: relative;
+      line-height: 1;
+    }
+
+    .header h5 {
+      line-height: 1;
+    }
+
+    .section img {
+      width: 293px;
+      height: 293px;
+    }
+
+    .header img-cir {
+      float: left;
+      width: 150px;
+      height: 150px;
+    }
+
+    /* Create 3 equal columns that sits next to each other */
+    .span_1_of_3 {
+      width: 32.26%;
+    }
+
+    .container {
+      width: 70%;
+      margin: auto;
+    }
+
+    .img-cir {
+      border-radius: 100px;
+      -webkit-border-radius: 100px;
+      -moz-border-radius: 100px;
+      width: 100px;
+      height: 100px;
+      background-image: url('images/avatar.jpg');
+      background-size: cover;
+      display: block;
+    }
+
+    .titl {
+      margin-left: 8px;
+    }
+
+    /* Responsive layout - makes a two column-layout instead of 3 columns */
+    @media screen and (max-width: 800px) {
+
+      .span_1_of_3 {
+        width: 49.2%;
+      }
+
+      img-cir {
+        border-radius: 100px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        width: 100px;
+        height: 100px;
+        background-image: url('images/avatar.jpg');
+        background-size: cover;
+        display: block;
+      }
+
+      .header {
+        text-align: center;
+        padding: 32px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .row {
+        position: relative;
+      }
+
+      .bottom-align-text {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+    }
+
+
+    /* Responsive layout - makes columns stack on top of each other instead of next to each other */
+    @media screen and (max-width: 600px) {
+
+      .span_1_of_3 {
+        width: 100%;
+      }
+
+      .h5 {
+        visibility: hidden;
+
+      }
+
+      .container {
+        width: 30%;
+        margin: auto;
+      }
+
+      img-cir {
+        border-radius: 100px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        width: 100px;
+        height: 100px;
+        background-image: url('images/avatar.jpg');
+        background-size: cover;
+        display: block;
+        align: center;
+      }
+
+      .header {
+        text-align: center;
+        padding: 32px;
+      }
+
+      .img1 {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        vertical-align: center;
+      }
+    }
+
+    /* hr.style1{
+	border-top: 1px solid #8c8b8b;
+} */
+    hr.style1 {
+      border: 0;
+      height: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+      margin-left: -15px;
+      margin-right: -15px;
+    }
+
+    .outer {
+      display: table;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .middle {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
+    .inner {
+      margin-left: auto;
+      margin-right: auto;
+      /* width: 935px; */
+      /*whatever width you want*/
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="overlay" class="" onclick="off()">
+    <!-- <div id="text">Overlay Text</div> -->
+    <div>
+      <div class="outer">
+        <div class="middle">
+          <div class="inner">
+            <div class="bg-white row">
+              <img id="myImage" class="align-middle" onclick="on('images/1.jpg')" src="">
+
+              <div class="col-sm mt-1">
+                <br>
+                <div>
+                  <img id="myImage" src="images/icon.png" align="left">
+
+                  <b>Random Username</b>
+                  <br>
+                  waterloo
+                </div>
+                <hr class="style1">
+
+                <div class="mt-5" style="display:inline-block;">
+                  <img id="myImage" src="images/icon.png" align="left">
+                  <b>Random Username</b> &nbsp; Lorem ipsum dolor sit amet, consectetur
+                  <div class="times" style="color: gray;">
+                    <b>13 mins Reply</b>
+                  </div>
+                </div>
+                <br>
+                <div class="mt-5" style="display:inline-block;">
+                  <img id="myImage" src="images/icon.png" align="left">
+                  <b>Random Username</b> &nbsp; Lorem ipsum dolor sit amet, consectetur
+                  <div class="times" style="color: gray;">
+                    <b>
+                    13 mins Reply
+                  </b>
+                  </div>
+                </div>
+                <div>
+                <div class="bottom-align-text col-sm-12">
+                  <hr class="style1">
+                  <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+                  <i class="fa fa-comment-o fa-2x" aria-hidden="true"></i>
+                  <i class="fa fa-share-square-o fa-2x" aria-hidden="true"></i>
+                  <br>
+                  <b>
+                  225 likes
+                </b>
+                  <br>
+                  <div style="color: gray;">
+                      23 minutes ago
+                  </div>
+                  
+                </div>
+                <div class="bottom-align-text col-sm-2">
+                  <i class="fa fa-bookmark-o fa-2x" aria-hidden="true"></i>
+                  <br>
+                  <br>
+                  <br>
+                </div>
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              </div>
+            </div>
+            
+          </div>
+          
+        </div>
+        <br>
+        <br>
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+  </div>
+
+  <div class="header">
+
+    <img class="img-cir" align="left" hspace="40"></img>
+    <h1 style="font-family:verdana; font-size:28px">Fakestargram</h1>
+    <h5 style="font-family:verdana; font-size:14px" class="lview">
+      <p>Lorem ipsum dolor sit amet, consectetur elit.<br />
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </h5>
+
+
+  </div>
+
+
+  <div class="row">
+    <div class="twelve columns">
+      <div class="row">
+
+
+
+        <img class="col span_1_of_3" onclick="on('images/1.jpg')" src="images/1.jpg" alt="Sunflower">
+        <img class="col span_1_of_3" onclick="on('images/2.jpg')" src="images/2.jpg" alt="">
+        <img class="col span_1_of_3" onclick="on('images/3.jpg')" src="images/3.jpg" alt="">
+        <img class="col span_1_of_3" src="images/4.jpg" alt="">
+        <img class="col span_1_of_3" onclick="on('images/5.jpg')" src="images/5.jpg" alt="">
+
+        <img class="col span_1_of_3" onclick="on('images/6.jpg')" src="images/6.jpg" alt="">
+        <img class="col span_1_of_3" onclick="on('images/7.jpg')" src="images/7.jpg" alt="">
+        <img class="col span_1_of_3" onclick="on('images/8.jpg')" src="images/8.jpg" alt="">
+        <img class="col span_1_of_3" onclick="on('images/9.jpg')" src="images/9.jpg" alt="">
+        <img class="col span_1_of_3" onclick="on('images/10.jpg')" src="images/10.jpg" alt="">
+
+        <img class="col span_1_of_3" onclick="on('images/11.jpg')" src="images/11.jpg" alt="">
+        <img class="col span_1_of_3" onclick="on('images/12.jpg')" src="images/12.jpg" alt="">
+        <img class="col span_1_of_3" onclick="on('images/13.jpg')" src="images/13.jpg" alt="">
+        <img class="col span_1_of_3" onclick="on('images/14.jpg')" src="images/14.jpg" alt="">
+        <img class="col span_1_of_3" onclick="on('images/15.jpg')" src="images/15.jpg" alt="">
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="twelve columns">
+
+
+
+  </div>
+  <hr />
+  <p align="center">©2019 Assignment 3.</p>
+
+  </div>
+  <script>
+    function on(imgURL) {
+      document.getElementById("myImage").src = imgURL;
+      document.getElementById("overlay").style.display = "block";
+    }
+
+    function off() {
+      document.getElementById("overlay").style.display = "none";
+    }
+  </script>
+</body>
